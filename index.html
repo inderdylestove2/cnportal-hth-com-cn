@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background-color: #f2f4f6;
+      color: #2a2e35;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 通用卡片 */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e5e9ee;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.8rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    /* hero 区——用卡片但更轻 */
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid #e5e9ee;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding: 2.6rem 2.2rem 2.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 550;
+      letter-spacing: 1px;
+      color: #1f2937;
+      margin-bottom: 0.65rem;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #5d6773;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-sub a {
+      color: #1b4e8c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #9bb7d4;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-sub a:hover {
+      color: #0f3b6b;
+      border-bottom: 1px solid #0f3b6b;
+    }
+
+    /* 二级标题 */
+    .section-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #d6dce4, transparent);
+      margin-left: 0.75rem;
+    }
+
+    /* 目录/网格布局 */
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .dir-item {
+      background: #fafbfc;
+      border: 1px solid #e2e7ed;
+      border-radius: 14px;
+      padding: 1.2rem 1rem 1.4rem;
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .dir-item:hover {
+      background: #f0f4f9;
+      border-color: #cbd3dd;
+    }
+
+    .dir-item .emoji-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .dir-item .dir-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1e2a3a;
+      margin-bottom: 0.2rem;
+    }
+
+    .dir-item .dir-desc {
+      font-size: 0.9rem;
+      color: #5e6a78;
+    }
+
+    /* 说明区 + 提示区 + 相关信息 —— 卡片内自由 */
+    .info-block p {
+      margin-bottom: 1rem;
+    }
+
+    .info-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-badge {
+      display: inline-block;
+      background: #eef2f7;
+      padding: 0.1rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: #1f3a5f;
+      font-weight: 500;
+      margin-right: 0.4rem;
+    }
+
+    .tip-list {
+      padding-left: 1.2rem;
+      list-style: none;
+    }
+
+    .tip-list li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    .tip-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0.2rem;
+      color: #3f6a9b;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eaedf2;
+      padding-bottom: 0.7rem;
+    }
+
+    .faq-q {
+      font-weight: 550;
+      color: #1f2a38;
+    }
+
+    .faq-a {
+      color: #495768;
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7f8a98;
+      border-top: 1px solid #dfe4eb;
+      padding-top: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+
+      .hero-card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .dir-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .dir-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- hero -->
+  <div class="hero-card">
+    <div class="hero-title">📘 华体会知识库</div>
+    <div class="hero-sub">
+      再次遇见 · 收藏此刻 · 持续关注<br>
+      这里是关于 <a href="https://cnportal-hth.com.cn">华体会</a> 的轻量信息入口，方便你随时回看。
+    </div>
+  </div>
+
+  <!-- 目录感布局：快速索引卡片 -->
+  <div class="card">
+    <div class="section-label">📂 内容目录</div>
+    <div class="dir-grid">
+      <div class="dir-item">
+        <span class="emoji-icon">📌</span>
+        <div class="dir-title">平台简述</div>
+        <div class="dir-desc">背景与定位</div>
+      </div>
+      <div class="dir-item">
+        <span class="emoji-icon">🧩</span>
+        <div class="dir-title">功能特点</div>
+        <div class="dir-desc">常用能力一览</div>
+      </div>
+      <div class="dir-item">
+        <span class="emoji-icon">💡</span>
+        <div class="dir-title">使用场景</div>
+        <div class="dir-desc">适合哪些日常</div>
+      </div>
+      <div class="dir-item">
+        <span class="emoji-icon">🔖</span>
+        <div class="dir-title">收藏提示</div>
+        <div class="dir-desc">快速回访技巧</div>
+      </div>
+      <div class="dir-item">
+        <span class="emoji-icon">❓</span>
+        <div class="dir-title">常见问题</div>
+        <div class="dir-desc">FAQ 摘要</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 说明区：平台简述 + 特点融合 -->
+  <div class="card info-block">
+    <div class="section-label">📖 平台简述</div>
+    <p>
+      <span class="highlight-badge">再次访问</span>
+      <a href="https://cnportal-hth.com.cn">华体会</a> 是一个围绕兴趣内容与信息共享设计的轻社区型站点。无论你是老用户还是刚发现这里，页面结构偏向简洁直观，旨在降低回访门槛。
+    </p>
+    <p>
+      从导航到内容卡片，整体遵循「少跳转、快定位」的思路。知识库方向下，我们将常见模块做了分区整理，方便你根据需求查找，也适合把链接收藏到浏览器书签栏。
+    </p>
+  </div>
+
+  <!-- 特点 + 场景 混排在一个卡片 -->
+  <div class="card">
+    <div class="section-label">⚙️ 特点与场景</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.8rem;">
+      <div style="flex: 1; min-width: 200px;">
+        <p style="font-weight: 550; margin-bottom: 0.3rem;">· 信息分区清晰</p>
+        <p style="color: #44515f; font-size: 0.95rem;">每个板块都有独立标签，浏览时不易混淆。</p>
+        <p style="font-weight: 550; margin: 1rem 0 0.3rem;">· 页面响应适配</p>
+        <p style="color: #44515f; font-size: 0.95rem;">电脑、平板、手机均可保持基本布局，阅读不费力。</p>
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <p style="font-weight: 550; margin-bottom: 0.3rem;">📎 日常场景</p>
+        <ul class="tip-list" style="margin-top: 0;">
+          <li>想回顾之前看到的某篇内容，通过目录快速跳转</li>
+          <li>把站点添加到主屏幕或书签，下次直接打开</li>
+          <li>向朋友简单介绍这个空间时，分享链接即可</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提示区 + 收藏关注 -->
+  <div class="card">
+    <div class="section-label">🔔 收藏与持续关注提示</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+      <div style="flex: 1; min-width: 180px;">
+        <p style="font-weight: 550;">📌 浏览器书签</p>
+        <p style="color: #44515f; font-size: 0.95rem;">将 <a href="https://cnportal-hth.com.cn">华体会</a> 加入书签文件夹，便于日后从收藏夹一键到达。</p>
+      </div>
+      <div style="flex: 1; min-width: 180px;">
+        <p style="font-weight: 550;">🔄 定期回访</p>
+        <p style="color: #44515f; font-size: 0.95rem;">内容会有更新节奏，隔段时间回来看看，或许有新发现。</p>
+      </div>
+      <div style="flex: 1; min-width: 180px;">
+        <p style="font-weight: 550;">📱 移动端快捷方式</p>
+        <p style="color: #44515f; font-size: 0.95rem;">iOS 和 Android 均支持「添加到主屏幕」，体验接近原生应用。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 相关信息区 + FAQ 摘要 -->
+  <div class="card">
+    <div class="section-label">📋 相关信息 & FAQ 摘要</div>
+    <div class="faq-mini">
+      <div class="faq-item">
+        <div class="faq-q">Q：这个知识库入口会经常变化吗？</div>
+        <div class="faq-a">A：入口页面本身保持稳定，但指向的内容区会随站点更新而丰富。建议每过一两周回来看看。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：如何快速找到之前感兴趣的部分？</div>
+        <div class="faq-a">A：使用浏览器内页面查找（Ctrl+F 或 Cmd+F），输入关键词如「特点」「场景」即可定位到对应卡片。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：是否需要在平台注册才能浏览？</div>
+        <div class="faq-a">A：大部分内容对访客开放，部分互动或个性化功能可能需轻量注册，以页面实际提示为准。</div>
+      </div>
+      <div class="faq-item" style="border-bottom: none; padding-bottom: 0;">
+        <div class="faq-q">Q：有其他方式保持关注吗？</div>
+        <div class="faq-a">A：目前可通过定期访问 <a href="https://cnportal-hth.com.cn">华体会</a> 来获取更新，未来或许会增加订阅通知。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    知识库入口 · 方便再次访问 &nbsp;|&nbsp; 内容仅供参考，以实际页面为准
+  </div>
+</div>
+</body>
+</html>

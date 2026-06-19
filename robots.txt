@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://inderdylestove2.github.io/cnportal-hth-com-cn/sitemap.xml

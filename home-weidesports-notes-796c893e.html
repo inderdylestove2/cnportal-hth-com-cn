@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伟德体育 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9fafc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2.4rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 740px;
+            width: 100%;
+        }
+
+        /* hero 区域 —— 纯文字，保持留白 */
+        .hero {
+            text-align: left;
+            padding: 3rem 0 2.2rem 0;
+            border-bottom: 1px solid #e6edf4;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0d1b2a;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #4b5c6e;
+            max-width: 600px;
+        }
+
+        /* 通用卡片网格 */
+        .card-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-top: 2.4rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 10, 30, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 530;
+            color: #13273f;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+            border-left: 3px solid #2d6a9f;
+            padding-left: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #2f4052;
+            margin-bottom: 0.9rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+        }
+
+        .card li {
+            position: relative;
+            padding-left: 1.1rem;
+            font-size: 0.95rem;
+            color: #2a3b4c;
+        }
+
+        .card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2d6a9f;
+            font-weight: 500;
+        }
+
+        .audience-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.4rem;
+        }
+
+        .audience-tag {
+            background: #eef4fa;
+            color: #1d3855;
+            padding: 0.35rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 450;
+            letter-spacing: 0.01em;
+        }
+
+        .link-sentence {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 2rem;
+            margin-top: 1.8rem;
+            border: 1px solid #e5ebf2;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .link-sentence a {
+            color: #1f5b8c;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #1f5b8c;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 2rem;
+            margin-top: 1.8rem;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            color: #13273f;
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 510;
+            color: #203a54;
+            margin-bottom: 0.15rem;
+            font-size: 0.98rem;
+        }
+
+        .faq-item p {
+            color: #3b4e62;
+            font-size: 0.93rem;
+            margin: 0;
+        }
+
+        hr {
+            margin: 2rem 0 1.2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e0e8f0;
+        }
+
+        .footer-note {
+            text-align: left;
+            font-size: 0.85rem;
+            color: #6a7f95;
+            padding-bottom: 0.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 520px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .link-sentence,
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+
+            .audience-grid {
+                gap: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero -->
+        <div class="hero">
+            <h1>伟德体育 · 信息卡</h1>
+            <div class="sub">站点介绍与可信说明 · 简洁直观</div>
+        </div>
+
+        <!-- 卡片区 -->
+        <div class="card-section">
+
+            <!-- 主视觉卡片：站点定位 -->
+            <div class="card">
+                <h2>站点概览</h2>
+                <p><a href="https://home-weidesports.com" style="color:#1f5b8c; font-weight:500; text-decoration:none;">伟德体育</a> 是一个面向体育资讯与数据服务的垂直平台，持续提供赛事动态、队伍统计、赛程分析等结构化内容。页面布局注重信息可读性，数据呈现方式清晰，适合需要快速掌握体育赛事情报的用户日常使用。</p>
+                <p>平台不涉及任何投注引导、资金交易或违规推荐，所有公开内容均基于公开体育赛事信息整理，保持客观与中立。</p>
+            </div>
+
+            <!-- 用途卡片：信息场景 -->
+            <div class="card">
+                <h2>主要用途</h2>
+                <ul>
+                    <li>赛事日程与比分速览</li>
+                    <li>球队及选手数据对比</li>
+                    <li>联赛积分与排名追踪</li>
+                    <li>赛前情报与统计摘要</li>
+                </ul>
+                <p style="margin-top:0.7rem;">每个模块均围绕体育迷的真实查阅习惯设计，减少冗余跳转，提升信息触达效率。</p>
+            </div>
+
+            <!-- 适合人群 -->
+            <div class="card">
+                <h2>适合人群</h2>
+                <div class="audience-grid">
+                    <span class="audience-tag">日常体育爱好者</span>
+                    <span class="audience-tag">赛事数据分析用户</span>
+                    <span class="audience-tag">多联赛关注者</span>
+                    <span class="audience-tag">内容浏览型访客</span>
+                    <span class="audience-tag">资讯效率型读者</span>
+                </div>
+                <p style="margin-top:1rem;">无论你关注足球、篮球、网球或其他主流运动，都能在站内找到对应赛事的数据入口，无需注册即可浏览大部分公开内容。</p>
+            </div>
+        </div>
+
+        <!-- 自然链接段落（嵌入文本） -->
+        <div class="link-sentence">
+            如果你正在寻找一个信息密度适中、界面干净的体育数据站点，可以前往 <a href="https://home-weidesports.com">伟德体育</a> 直接浏览最新赛事面板与统计模块。该站保持定期更新，数据源稳定，适合作为日常体育信息参考渠道之一。
+        </div>
+
+        <!-- FAQ 摘要卡片 -->
+        <div class="faq-mini">
+            <h3>常见疑问 · 摘要</h3>
+            <div class="faq-item">
+                <strong>站点是否免费浏览？</strong>
+                <p>是的，目前站内绝大部分内容对访客开放，无需付费或注册即可查看赛事信息与统计面板。</p>
+            </div>
+            <div class="faq-item">
+                <strong>数据更新频率如何？</strong>
+                <p>通常在重点赛事结束后的较短时间内完成比分与数据刷新，具体视赛事规模略有差异。</p>
+            </div>
+            <div class="faq-item">
+                <strong>是否提供移动端适配？</strong>
+                <p>页面采用响应式布局，在手机与平板设备上均可获得较为一致的信息浏览体验。</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="footer-note">
+            © 信息页面 · 仅作介绍用途 · 数据来源均基于公开体育信息
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>万博体育 · 日常查询与延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f7fa;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #1b2b36;
+      line-height: 1.6;
+      padding: 1.25rem;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* header / hero 区域 */
+    .hero {
+      background: linear-gradient(135deg, #d9f0f7 0%, #b2dfe8 100%);
+      border-radius: 2rem 2rem 1.5rem 1.5rem;
+      padding: 2.8rem 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 18px rgba(22, 68, 80, 0.06);
+      border: 1px solid rgba(120, 186, 200, 0.25);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #083b4a;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .hero h1 small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #2f6b7a;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 0.12rem 0.8rem;
+      border-radius: 40px;
+      margin-left: 0.6rem;
+      vertical-align: middle;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 1.1rem;
+      color: #1f4e5e;
+    }
+
+    /* 网格卡片区域 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.6rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 35, 45, 0.04);
+      border: 1px solid #e2edf2;
+      transition: transform 0.1s ease, box-shadow 0.15s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(20, 100, 115, 0.08);
+      border-color: #b8d8e3;
+    }
+
+    .card .icon-em {
+      display: inline-block;
+      font-size: 1.7rem;
+      margin-bottom: 0.3rem;
+      opacity: 0.6;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #104857;
+      margin: 0.2rem 0 0.6rem 0;
+      letter-spacing: -0.01em;
+    }
+
+    .card p, .card li {
+      color: #284f5c;
+      font-size: 0.98rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      padding: 0.3rem 0 0.3rem 1.5rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #3d8b9e;
+    }
+
+    .highlight {
+      background: #d7edf3;
+      border-left: 4px solid #3f95ac;
+      padding: 1.2rem 1.5rem;
+      border-radius: 1.2rem;
+      margin-bottom: 2.6rem;
+      font-size: 1rem;
+    }
+
+    .highlight a {
+      color: #096b80;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1.5px dotted #6bb5c9;
+    }
+
+    .highlight a:hover {
+      border-bottom-style: solid;
+      color: #024d5e;
+    }
+
+    /* 使用建议 / 场景 区块 */
+    .scene-block {
+      background: #f9fdfe;
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.2rem;
+      border: 1px solid #daeaf0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.2rem 2rem;
+    }
+
+    .scene-block .scene-text {
+      flex: 3;
+      min-width: 240px;
+    }
+
+    .scene-block .scene-text h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #06323e;
+      margin-bottom: 0.5rem;
+    }
+
+    .scene-block .scene-text p {
+      color: #2b5b6a;
+      margin-bottom: 0.6rem;
+    }
+
+    .scene-block .tip-card {
+      flex: 1.2;
+      min-width: 180px;
+      background: #e5f3f8;
+      border-radius: 1.3rem;
+      padding: 1.2rem 1.2rem 1.4rem;
+    }
+
+    .scene-block .tip-card span {
+      font-weight: 500;
+      color: #0c4d5e;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .scene-block .tip-card p {
+      font-size: 0.9rem;
+      color: #1b5565;
+      line-height: 1.5;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.6rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 30, 40, 0.02);
+      border: 1px solid #e0edf2;
+    }
+
+    .faq-mini h3 {
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #104857;
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item {
+      padding: 0.4rem 0;
+    }
+
+    .faq-item strong {
+      color: #115e72;
+      font-weight: 500;
+    }
+
+    .faq-item p {
+      color: #2a5b69;
+      margin: 0.1rem 0 0.2rem 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, #cce3ea, transparent);
+      margin: 0.8rem 0;
+    }
+
+    .footnote {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: baseline;
+      font-size: 0.9rem;
+      color: #497a88;
+      padding-top: 0.6rem;
+      border-top: 1px solid #dcebf1;
+      margin-top: 1.2rem;
+    }
+
+    .footnote a {
+      color: #1f778e;
+      text-decoration: none;
+      border-bottom: 1px solid #9cc9d8;
+    }
+
+    .footnote a:hover {
+      color: #004b5c;
+      border-bottom-color: #004b5c;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 0.85rem;
+      }
+
+      .hero {
+        padding: 2rem 1.2rem 1.8rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero h1 small {
+        display: inline-block;
+        margin-top: 0.3rem;
+        margin-left: 0;
+        font-size: 0.8rem;
+      }
+
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .scene-block {
+        flex-direction: column;
+        padding: 1.6rem;
+      }
+
+      .scene-block .tip-card {
+        width: 100%;
+      }
+
+      .card {
+        padding: 1.4rem;
+      }
+    }
+
+    /* 额外小修饰 */
+    .subtle-tag {
+      background: #cee6ee;
+      color: #0b4b5c;
+      border-radius: 40px;
+      padding: 0.08rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      display: inline-block;
+      margin-bottom: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- hero 摘要 -->
+  <div class="hero">
+    <h1>
+      万博体育
+      <small>日常参考·延伸阅读</small>
+    </h1>
+    <p>围绕体育资讯与赛事对照，从查询、翻阅到信息整理，提供一份克制的介绍与使用思路。</p>
+  </div>
+
+  <!-- 亮点卡片网格 -->
+  <div class="grid-2col">
+    <div class="card">
+      <div class="icon-em">📋</div>
+      <h3>信息对照 · 赛事延伸</h3>
+      <ul>
+        <li>快速查阅体育项目基础数据与背景</li>
+        <li>从单一赛事延伸至关联内容，辅助理解</li>
+        <li>适合赛前简单翻阅与赛后回顾比对</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="icon-em">🧩</div>
+      <h3>场景化检索</h3>
+      <ul>
+        <li>日常浏览时获取队伍、规则、历史等参考</li>
+        <li>对照多栏目信息，减少反复跳转</li>
+        <li>移动端适配，通勤或间隙使用更顺手</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 自然嵌入链接的 highlight 块 -->
+  <div class="highlight">
+    <span class="subtle-tag">📎 延伸入口</span>
+    如果你希望进一步了解体育资讯或查阅内容结构，可以前往
+    <a href="https://portals-wanbosports.com">万博体育</a>
+    浏览。页面以板块方式组织，适合作为日常信息聚合的起点之一。
+  </div>
+
+  <!-- 使用建议 + 场景 (带有tips卡片) -->
+  <div class="scene-block">
+    <div class="scene-text">
+      <h2>日常查询与对照</h2>
+      <p>将万博体育作为一个信息片段的中转站：浏览时记录感兴趣的队伍、赛季或规则，再对照其他资料做延伸阅读，避免信息碎片化。</p>
+      <p>尤其适合在赛前简单翻阅背景，赛后对照数据，或整理自己的观赛笔记。不替代深度数据平台，但能提供轻量的聚合视角。</p>
+    </div>
+    <div class="tip-card">
+      <span>📌 使用提示</span>
+      <p>建议配合笔记本或浏览器标签分组，将页面内容作为线索，再自行查证更加详细的信息。保持信息交叉验证的习惯。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要（克制风格） -->
+  <div class="faq-mini">
+    <h3>常见想法 · 简短回应</h3>
+    <div class="faq-item">
+      <strong>❔ 页面内容是否实时更新？</strong>
+      <p>作为信息聚合页，内容由运营维护，具体时效建议参考页面标注。重大赛事期间可留意板块轮动。</p>
+    </div>
+    <div class="divider"></div>
+    <div class="faq-item">
+      <strong>❔ 适合哪些人使用？</strong>
+      <p>对体育资讯有日常查阅需求，且希望在一个位置获得多条目的对照框架。不局限于单一项目。</p>
+    </div>
+    <div class="divider"></div>
+    <div class="faq-item">
+      <strong>❔ 是否需要注册？</strong>
+      <p>浏览与查阅部分内容无需注册。具体互动功能可参考站内说明。请根据自身情况判断。</p>
+    </div>
+  </div>
+
+  <!-- 结尾 + 再次自然出现链接 -->
+  <div class="footnote">
+    <span>基于浏览习惯设计 · 非官方指南</span>
+    <span>
+      更多内容：
+      <a href="https://portals-wanbosports.com">万博体育</a>
+    </span>
+  </div>
+</div>
+</body>
+</html>
